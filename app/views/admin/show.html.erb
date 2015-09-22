@@ -1,0 +1,21 @@
+<%= link_to "Search", "/admin/search/" + session[:user_name] %>
+<p> Welcome Admin <%= session[:user_name] %>,please choose an option </p>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+        <br\>       
+<table border = 1>
+   <tr>
+      <td> <%=link_to 'Create a book entry', "/book/new/" + session[:user_name]%> </td>
+   </tr>
+   <tr>
+      <td> <%=link_to 'Add new Admin', "/admin/new/" + session[:user_name] %> </td>
+   </tr>
+   <tr>
+      <td> <%=link_to 'Add new User', "/user/new/" + session[:user_name] %> </td>
+   </tr>
+   <tr>
+      <td> <%=link_to 'Search book', "/admin/search/" + session[:user_name] %> </td>
+   </tr> 
+</table>
+<% if flash[:notice] %>
+    <h1><%= flash[:notice]%></h1>
+<%end%>

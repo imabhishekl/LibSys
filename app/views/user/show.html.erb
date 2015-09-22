@@ -1,0 +1,7 @@
+              <h1>Welcome <%= session[:user_name] %></h1>
+        <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+        <br\>       
+        <% if flash[:notice] %>
+        	<h1><%= flash[:notice]%></h1>
+        <%end%>
+      

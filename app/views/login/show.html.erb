@@ -1,0 +1,18 @@
+              <h1>Welcome to Login Page</h1>
+        <br/>       
+        <%= link_to "Home Page", controller: "home_page", action: "index" %>
+        <br/>
+        <%= form_tag(:controller => 'login',:action => 'login_auth') do %>
+        <%= label_tag(:user_name,%Q(USER NAME)) %>
+        <%= text_field_tag(:user_name) %><br/> <br/>
+        <%= label_tag(:password,%Q(PASSWORD)) %>
+        <%= password_field_tag(%Q(password)) %><br/><br/>
+        <%= radio_button_tag(:type, %Q(user),:checked =>true) %>
+        <%= label_tag(:admin_check,%Q(USER)) %> 
+        <%= radio_button_tag(:type, %Q(admin)) %>
+        <%= label_tag(:admin_check,%Q(ADMIN)) %><br/>
+        <% if flash[:notice] %>
+        	<font size="3" color="red"><%= flash[:notice]%></font>
+        <%end%><br/>
+        <%= submit_tag("Login") %>
+        <%end%>
