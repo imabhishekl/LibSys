@@ -1,4 +1,4 @@
-<%= form_for(@admin,url: {action: "new"},:user_name => session[:user_name]) do |f| %>
+<%= form_for(@admin,url: {action: "create"},:user_name => session[:user_name]) do |f| %>
   <% if @admin.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this book from being saved:</h2>
@@ -33,5 +33,6 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+    <input type="hidden" name="user_name" value=<%= session[:user_name]%>>
   </div>
 <% end %>
