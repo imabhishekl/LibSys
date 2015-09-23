@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 <h1>Add a new book</h1>
+<%= link_to "Back", "/admin/show/" + session[:user_name] %>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+
 
 <%= render 'form' %>
 

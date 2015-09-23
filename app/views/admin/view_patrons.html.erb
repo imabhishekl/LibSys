@@ -1,0 +1,25 @@
+<%= link_to "Back", "/admin/show/" + session[:user_name] %>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+<br/><br/> 
+<% if @patrons.present? %>
+	<h1>Patrons List</h1>
+    <table border="1">
+        <tr>    
+            <td> USERNAME </td>
+            <td> NAME     </td>
+            <td> STATUS   </td>
+            <td> DELETE   </td>    
+            <td> VIEW CHECKOUT LIST </td> 
+        </tr>           
+        <%@patrons.each do |p|%>
+ 	    <tr>            
+        	<td> <%= p.user_name %> </td>
+            <td> <%= p.name %> </td>
+            <td> <%= p.status %> </td>
+            <td> <%= link_to "Delete","/admin/delete_patrons/" + session[:user_name] + "?u_name=" + p.user_name unless p.status != "Active"%></td>     
+            <td> <%= link_to "View Checkout List" ,"/admin/checked_out_book_list/" + session[:user_name] + "?u_name=" + p.user_name%> </td>
+        </tr>           
+        <%end%>  
+		<% else %>
+  			<p>No Patrons in the Library :(.</p>
+		<% end %>

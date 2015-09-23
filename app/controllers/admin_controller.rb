@@ -9,7 +9,18 @@ class AdminController < ApplicationController
 		#valid request from legitemamte user
 	end
 
+  def view_patrons 
+    @patrons=User.all
+  end
+
+  def delete_patrons 
+    
+  end
+    
+  end
+
   def checked_out_book_list
+    puts "LibSys" + params[:u_name]
     @book_list=CheckoutDetail.checkout_list params[:u_name],params[:isbn],session[:is_admin]
     #redirect_to "/admin/checked_out_book_list/" + session[:user_name]
   end

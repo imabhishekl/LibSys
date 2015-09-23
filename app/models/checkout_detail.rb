@@ -20,6 +20,10 @@ class CheckoutDetail < ActiveRecord::Base
 	end
 
 	def self.insert_in_chkout_dtls u_name,isbn
-		CheckoutDetail.create(isbn: isbn,user_name: u_name,checkout_status: CheckedOut)
+		CheckoutDetail.create(isbn: isbn,
+							  user_name: u_name,
+							  checkout_date: Date.today,
+							  return_date: Date.today + 3.month,
+							  checkout_status: "CheckedOut")
 	end
 end
