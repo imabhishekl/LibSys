@@ -40,13 +40,12 @@
                 <td> <%= book.description %> </td>
                 <td> <%= book.status %> </td>
                 <% if book.status=='Available' %>
-                <td><%= link_to 'Check out book', :onclick => "ask_user_name(#{book.isbn})"%></td>
+                <td><%= link_to 'Check out book', "/user/checkout/" + book.isbn +"/" + session[:user_name] %></td>
                 <%else%>
                 <td><%=link_to 'Request a notification', "/request/new/" + session[:user_name]%> </td>
                 <%end%>
-            	<%end%>       
-            </tr>           
+               </tr>           
             <%end%>  
-		<% else %>
+                <% else %>
   			<p>No book match your results <%= params[:search] %>.</p>
 		<% end %>

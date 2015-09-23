@@ -68,6 +68,18 @@ class UserController < ApplicationController
 		end
 	end
 
+        def checkout
+        	isbn=params[:isbn]
+        	if Book.find_by_isbn(isbn).update(status:"checkout")
+
+          		flash[:notice] = "Book Checked out"
+          		redirect_to "/user/show/" + session[:user_name]
+        	else
+          		flash[:notice] = "Failed to checkout book"
+          		redirect_to "/user/show/" + session[:user_name]
+        	end
+        end
+
 	private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
