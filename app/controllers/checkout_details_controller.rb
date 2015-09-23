@@ -1,2 +1,0 @@
-class CheckoutDetailController < ApplicationController
-end

@@ -26,8 +26,13 @@ class RequestController < ApplicationController
         end
 
         def create
-                @request = Request.new(request_params)
+                if session[:is_admin].eql?("YES") 
+                	# validating if admin
+                else
+                        params[:request]["user_name"]=session[:user_name]
+                end
 
+              	@request = Request.new(request_params)
         begin
                 @request.save!
         rescue Exception=> e
@@ -35,11 +40,16 @@ class RequestController < ApplicationController
                         flash[:notice]="The ISBN is not unique.The Form was not saved"
                         render action: 'new'
                 else
-                        raise "error"
+                        raise e 
                 end
         end
-        flash[:notice]='Request was successfully created.'
-        redirect_to ("/request/show/" + session[:user_name])
+        if session[:is_admin].eql?("YES")
+        	flash[:notice]='Request was successfully created.'
+        	redirect_to ("/admin/show/" + session[:user_name])
+        else
+                flash[:notice]='Request was successfully created.'
+                redirect_to ("/user/show/" + session[:user_name])
+        end
         end
 
   	def update

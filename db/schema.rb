@@ -38,17 +38,20 @@ ActiveRecord::Schema.define(version: 20150920044244) do
   end
 
   create_table "checkout_details", id: false, force: :cascade do |t|
-    t.string   "isbn",            limit: 13, null: false
-    t.string   "user_name",       limit: 50, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "checkout_status", limit: 10, null: false
+    t.string   "isbn",               limit: 13, null: false
+    t.string   "user_name",          limit: 50, null: false
+    t.datetime "checkout_date",                 null: false
+    t.datetime "return_date"
+    t.datetime "actual_return_date"
+    t.string   "checkout_status",    limit: 10, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "requests", id: false, force: :cascade do |t|
-    t.string "isbn",        limit: 13, null: false
-    t.string "user_name",   limit: 25, null: false
-    t.string "request_ind", limit: 1,  null: false
+    t.string "isbn",        limit: 13,               null: false
+    t.string "user_name",   limit: 25,               null: false
+    t.string "request_ind", limit: 1,  default: "Y", null: false
   end
 
   create_table "users", primary_key: "user_name", force: :cascade do |t|

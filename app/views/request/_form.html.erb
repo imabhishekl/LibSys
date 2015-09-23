@@ -3,7 +3,7 @@
     <%= f.label :isbn %><br>
     <%= f.text_field :isbn %>
    </div>
-<% if session[:is_admin].eql?(YES) %>
+<% if session[:is_admin].eql?("YES") %>
   <div class="field">
     <%= f.label :user_name %><br>
     <%= f.text_field :user_name %>

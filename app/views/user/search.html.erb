@@ -39,10 +39,15 @@
                 <td> <%= book.authors %> </td>
                 <td> <%= book.description %> </td>
                 <td> <%= book.status %> </td>
+                <input type="hidden" name="user_name" value=<%= session[:user_name]%>>
                 <% if book.status=='Available' %>
-                <td><%= link_to 'Check out book', "/user/checkout/" + book.isbn +"/" + session[:user_name] %></td>
+                <td><%= link_to 'Check out book', "/user/checkout/" + session[:user_name] + "?isbn=" + book.isbn %></td>
                 <%else%>
+                    <% if @requests.any?{|request| request.isbn==book.isbn} %>
+                    <td> notification requested </td>
+                    <%else%>
                 <td><%=link_to 'Request a notification', "/request/new/" + session[:user_name]%> </td>
+                    <%end%>
                 <%end%>
                </tr>           
             <%end%>  
