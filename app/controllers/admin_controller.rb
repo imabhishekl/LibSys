@@ -43,6 +43,7 @@ class AdminController < ApplicationController
   	end
 
   	def create
+        params[:admin]["password"]=Base64.encode64(params[:admin]["password"])
     	@admin = Admin.new(admin_params)
 
     	begin
@@ -98,7 +99,7 @@ class AdminController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-    	params.require(:admin).permit(:user_name,:name,:password,:email_id,:primary_ind)
+    	params.require(:admin).permit(:user_name,:name,:password,:email,:primary_ind)
     end
 
     private :set_admin, :admin_params

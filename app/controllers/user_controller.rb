@@ -13,6 +13,7 @@ class UserController < ApplicationController
     end
 
   	def create
+        params[:user]["password"]=Base64.encode64(params[:user]["password"])
     	@user = User.new(user_params)
 
     	begin
@@ -21,12 +22,22 @@ class UserController < ApplicationController
         	if e.is_a?ActiveRecord::RecordNotUnique
         		flash[:notice]="The user_name is not unique.The Form was not saved."
            		render action: 'new'
+                        return 
         	else
-        		flash[:notice]='User was successfully created.'
-        	   	redirect_to @user
+                        raise "error"
         	end
     	end
+        flash[:notice]='User was successfully created.'
+        redirect_to ("/admin/show/"+ session[:user_name]) 
   	end
+
+        def search
+                if params[:search_type]
+                @books=Book.search_results params[:search_type],params[:search_key]
+        else
+                #render search page without any result
+        end
+        end
 
  	def destroy
     	@user.destroy

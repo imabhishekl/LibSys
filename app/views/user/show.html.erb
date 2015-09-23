@@ -1,7 +1,13 @@
-              <h1>Welcome <%= session[:user_name] %></h1>
-        <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+<p> Welcome user <%= session[:user_name] %>,please choose an option </p>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
         <br\>       
-        <% if flash[:notice] %>
-        	<h1><%= flash[:notice]%></h1>
-        <%end%>
-      
+<table border = 1>
+   <tr>
+   <tr>
+  <td> <%=link_to 'Search book', "/user/search/" + session[:user_name] %> </td>
+  <td> <%=link_to 'View your book requests', "/book/new/" + session[:user_name]%> </td>
+   </tr> 
+</table>
+<% if flash[:notice] %>
+    <h1><%= flash[:notice]%></h1>
+<%end%>

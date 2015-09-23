@@ -32,10 +32,11 @@ class BookController < ApplicationController
            		flash[:notice]="The ISBN is not unique.The Form was not saved"
            		render action: 'new'
         	else
-          		flash[:notice]='Book was successfully created.'
-           		redirect_to @book
+                        raise "error"
         	end
     	end
+        flash[:notice]='Book was successfully created.'
+        redirect_to ("/admin/show/" + session[:user_name])
   	end
 
   	def destroy

@@ -1,23 +1,22 @@
-        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-        <h1>Welcome Admin <%= session[:user_name] %> to search books</h1>
-        <%= link_to "Back", "/admin/show/" + session[:user_name] %>
+        <h1>Welcome User <%= session[:user_name] %> to search books</h1>
+        <%= link_to "Back", "/user/show/" + session[:user_name] %>
         <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
         <br/><br/>       
         <font color="black"><b>Search Books</b></font>
-		<%= form_tag "/admin/search/" + session[:user_name], :method => 'get' do %>
+		<%= form_tag "/user/search/" + session[:user_name], :method => 'get' do %>
   			<p>
     		<%= text_field_tag :search_key, params[:search]%>
     		<br/>	
     		<%= radio_button_tag(:search_type, %Q(isbn),:checked =>true) %>
-  	      	<%= label_tag(:admin_check,%Q(ISBN)) %> 
+  	      	<%= label_tag(:user_check,%Q(ISBN)) %> 
     	    <%= radio_button_tag(:search_type, %Q(author)) %>
-        	<%= label_tag(:admin_check,%Q(AUTHOR)) %>
+        	<%= label_tag(:user_check,%Q(AUTHOR)) %>
         	<%= radio_button_tag(:search_type, %Q(title)) %>
-        	<%= label_tag(:admin_check,%Q(TITLE)) %>
+        	<%= label_tag(:user_check,%Q(TITLE)) %>
         	<%= radio_button_tag(:search_type, %Q(description)) %>
-        	<%= label_tag(:admin_check,%Q(DESCRIPTION)) %><br/>
+        	<%= label_tag(:user_check,%Q(DESCRIPTION)) %>
         	<%= radio_button_tag(:search_type, %Q(available)) %>
-        	<%= label_tag(:admin_check,%Q(AVAILABLE)) %><br/><br/>
+        	<%= label_tag(:user_check,%Q(AVAILABLE)) %><br/><br/>
     		<%= submit_tag "Search", :name => nil %>
   			</p>
 		<% end %>
@@ -41,9 +40,10 @@
                 <td> <%= book.description %> </td>
                 <td> <%= book.status %> </td>
                 <% if book.status=='Available' %>
-            <td><a href="#" onclick="ask_user_name('<%=session[:user_name]%>','<%= book.isbn%>')">CheckOut</a></td>
+                <td><%= link_to 'Check out book', :onclick => "ask_user_name(#{book.isbn})"%></td>
                 <%else%>
                 <td><%=link_to 'Request a notification', "/request/new/" + session[:user_name]%> </td>
+                <%end%>
             	<%end%>       
             </tr>           
             <%end%>  
