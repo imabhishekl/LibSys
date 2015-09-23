@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get    ':controller(/:action(/:user_name))'
   post   ':controller(/:action(/:user_name))'
   delete 'logout' =>  'login#logout'
+  get    'edit_view' => 'admin#edit_view/:user_name'
   get    'search' =>   'admin#search/:user_name'
   
+  resources :admin
   resources :book
   resources :user
   resources :checkout_detail

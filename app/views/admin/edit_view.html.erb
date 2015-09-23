@@ -1,0 +1,22 @@
+<%= link_to "Back", "/admin/show/" + session[:user_name] %>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+<br/><br/>
+<%= form_for(@admin_detail,url: {action: "update_admin",:user_name => session[:user_name]}) do |f| %>
+  <table>
+  	<tr>
+    	<td><%= f.label :user_name %></td>
+    	<td><%= f.text_field :user_name,:disabled=>true %></td>
+  	</tr>
+  	<tr>
+    	<td><%= f.label :name %></td>
+    	<td><%= f.text_field :name %></td>
+  	</tr>
+  	<tr>
+    	<td><%= f.label :email %></td>
+    	<td><%= f.text_field :email %></td>
+  	</tr>
+  	<tr>
+    	<td colspan="2"> <%= f.submit %></td>
+    </tr>
+  </div>
+<% end %>

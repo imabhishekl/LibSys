@@ -1,6 +1,8 @@
 <p> Welcome Admin <%= session[:user_name] %>,please choose an option </p>
-<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
-        <br\>       
+        <br\>   
+        <font color="blue"><%= link_to 'Edit Profile', '/admin/edit_view/' + session[:user_name] %></font>
+        <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>   
+        <br\><br\> 
 <table border = 1>
    <tr>
       <td> <%=link_to 'Create a book entry', "/book/new/" + session[:user_name]%> </td>
@@ -12,10 +14,16 @@
       <td> <%=link_to 'Add new User', "/user/new/" + session[:user_name] %> </td>
    </tr>
    <tr>
-      <td> <%=link_to 'Search book', "/admin/search/" + session[:user_name] %> </td>
+      <td> <%=link_to 'View All Admins', "/admin/view_admin/" + session[:user_name] %> </td>
    </tr> 
    <tr>
-      <td> <%=link_to 'View Checkout Book', "/admin/checked_out_book_list/" + session[:user_name] %></td>
+      <td> <%=link_to 'View ALL Checkout Book', "/admin/checked_out_book_list/" + session[:user_name] + "?current=1"  %></td>
+   </tr> 
+   <tr>
+      <td> <%=link_to 'View Current Checkout Book', "/admin/checked_out_book_list/" + session[:user_name]%></td>
+   </tr>
+   <tr>
+      <td> <%=link_to 'View All Books', "/book/view_all_book/" + session[:user_name] %> </td>
    </tr> 
    <tr>
       <td> <%=link_to 'View Library Patrons', "/admin/view_patrons/" + session[:user_name] %> </td>

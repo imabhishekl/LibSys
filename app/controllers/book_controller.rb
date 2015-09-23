@@ -39,6 +39,16 @@ class BookController < ApplicationController
         redirect_to ("/admin/show/" + session[:user_name])
   	end
 
+    def delete_book
+      ret = Book.destroy(params[:isbn])
+      if ret
+        flash[:notice]="Successfully Deleted Library Patrons from System!"
+      else
+        flash["Some error in delete"]
+      end
+      redirect_to "/admin/show/" + session[:user_name]
+    end
+
   	def destroy
     	@book.destroy
     	respond_to do |format|
@@ -52,6 +62,10 @@ class BookController < ApplicationController
       	else
         	render action: 'edit' 
       	end
+    end
+
+    def view_all_book
+      @book_list = Book.all
     end
 
   	def checkout

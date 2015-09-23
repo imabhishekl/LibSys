@@ -1,29 +1,27 @@
 <%= link_to "Back", "/admin/show/" + session[:user_name] %>
 <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
 <br/><br/> 
-<% if @patrons.present? %>
-	<h1>Patrons List</h1>
+<% if @admin_list.present? %>
+	<h1>Admins List</h1>
     <table border="1">
         <tr>    
             <td> USERNAME </td>
             <td> NAME     </td>
-            <td> STATUS   </td>
+            <td> Is Primary User </td> 
             <td> DELETE   </td>    
-            <td> VIEW ALL CHECKOUT LIST </td> 
         </tr>           
-        <%@patrons.each do |p|%>
+        <%@admin_list.each do |p|%>
  	    <tr>            
         	<td> <%= p.user_name %> </td>
             <td> <%= p.name %> </td>
-            <td> <%= p.status %> </td>
-            <td> <% if p.status == "Active"%>
+            <td> <%= p.primary_ind %> </td>
+            <td> <% if p.primary_ind.eql?("N") && !p.user_name.eql?(session[:user_name])%>
             		<a href="#" 
-               			onclick="warning_prompt('<%= session[:user_name]%>','<%= p.user_name %>')">
+               			onclick="warning_prompt_admin_delete('<%= session[:user_name]%>','<%= p.user_name %>')">
                			Delete
                		</a>
                		<%end%>
             </td>     
-            <td> <%= link_to "View Checkout List" ,"/admin/checked_out_book_list/" + session[:user_name] + "?u_name=" + p.user_name%> </td>
         </tr>           
         <%end%>  
 		<% else %>

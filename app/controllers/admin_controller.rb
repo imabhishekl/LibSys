@@ -9,19 +9,46 @@ class AdminController < ApplicationController
 		#valid request from legitemamte user
 	end
 
+  def edit_view
+    @admin_detail= Admin.find_by_user_name(session[:user_name])
+    if @admin_detail
+      @admin_detail
+    else
+      flash[:notice] = "Sorry some issue in fetching details"
+      redirect_to "/admin/show/" + session[:user_name]
+    end
+  end
+
+  def delete_admin
+    if Admin.destroy(params[:admin_u_name])
+      flash[:notice]="Successfully Deleted Admin #{params[:admin_u_name]} from System!"
+    else
+      flash["Some error in deleting admin"]
+    end
+      redirect_to "/admin/show/" + session[:user_name]
+  end
+
+  def delete_patrons
+    ret = CheckoutDetail.destroy(params[:u_name])
+    if ret
+      User.destroy(params[:u_name])
+      flash[:notice]="Successfully Deleted Library Patrons #{params[:u_name]} from System!"
+    else
+      flash["Some error in delete"]
+    end
+    redirect_to "/admin/show/" + session[:user_name]
+  end
+
   def view_patrons 
     @patrons=User.all
   end
 
-  def delete_patrons 
-    
-  end
-    
+  def view_admin
+    @admin_list=Admin.all
   end
 
   def checked_out_book_list
-    puts "LibSys" + params[:u_name]
-    @book_list=CheckoutDetail.checkout_list params[:u_name],params[:isbn],session[:is_admin]
+    @book_list=CheckoutDetail.checkout_list params[:u_name],params[:isbn],session[:is_admin],params[:current]
     #redirect_to "/admin/checked_out_book_list/" + session[:user_name]
   end
 
@@ -37,8 +64,6 @@ class AdminController < ApplicationController
 	end
 
 	def search
-		puts "ASLTCH:search"
-    puts params[:search_type]
 		if params[:search_type]
      		@books=Book.search_results params[:search_type],params[:search_key]
      		puts "ASLTECH : COUNT : " + @books.count.to_s
@@ -51,7 +76,12 @@ class AdminController < ApplicationController
       @admin = Admin.new
   	end
 
-  	def edit
+  	def update_admin
+      puts params[:admin_detail][:name]
+      Admin.update_attributes(:name=>params[:admin_detail][:name])
+
+      flash[:notice] = "Successfully Updated for #{params[:admin_detail][:name]}"
+      redirect_to "/admin/show" + session[:user_name]
   	end
 
   	def create

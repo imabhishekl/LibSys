@@ -23,3 +23,27 @@ function ask_user_name(admin_user_name,isbn)
 						"?u_name=" + u_name + "&isbn=" + isbn;
 	}
 }
+
+function warning_prompt(admin_user_name,u_name)
+{
+	alert("Warning please check if it has some currently checked out books!!!!!!!")
+		window.location="http://localhost:3000/admin/delete_patrons/" + admin_user_name + 
+						"?u_name=" + u_name;
+}
+
+function warning_prompt_admin_delete(admin_user_name,admin_u_name)
+{
+	if(confirm("Warning deleting a Admin!!!!!!!\nAre you sure"))
+	{
+		window.location="http://localhost:3000/admin/delete_admin/" + admin_user_name + 
+						"?admin_u_name=" + admin_u_name;	
+	}
+
+}
+
+function warning_prompt_book_delete(admin_user_name,isbn)
+{
+	alert("Warning deleting a books!!!!!!!")
+		window.location="http://localhost:3000/book/delete_book/" + admin_user_name + 
+						"?isbn=" + isbn;	
+}

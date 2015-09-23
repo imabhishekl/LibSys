@@ -4,7 +4,6 @@ class Book < ActiveRecord::Base
 	def self.search_results search_type,search_key
 		puts "ASLTECH"
 		if search_type.eql?("isbn")
-			puts "ASLTECH:ISBN"
 			where("isbn like ?","%#{search_key}%")
 		elsif (search_type.eql?("author"))
 			where("authors like ?","%#{search_key}%")
