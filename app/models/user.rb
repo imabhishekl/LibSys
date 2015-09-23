@@ -11,6 +11,17 @@ class User < ActiveRecord::Base
        end
 	end
 
+  def self.isValid?(u_name)
+    puts "ASLTECH=>" + u_name
+    if exists?(:user_name => u_name)
+      puts "true"
+      return true
+    else
+      puts "false"
+      return false
+    end
+  end
+
 	def match_password(login_password,hashed_password)
        hashed_password == Base64.encode64(login_password)
     end

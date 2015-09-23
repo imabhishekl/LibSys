@@ -14,8 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-function ask_user_name(action)
+function ask_user_name(admin_user_name,isbn)
 {
-	var user_name = prompt("Please enter the user_name for which checkout is requested")
-	window.location="http://localhost:3000/admin/" + action + "/?user_name=" + user_name;
+	var u_name = prompt("Please enter the user_name for which checkout is requested")
+	if (u_name != null)
+	{
+		window.location="http://localhost:3000/admin/checkout/" + admin_user_name + 
+						"?u_name=" + u_name + "&isbn=" + isbn;
+	}
 }
