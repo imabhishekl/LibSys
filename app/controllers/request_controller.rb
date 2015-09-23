@@ -29,7 +29,7 @@ class RequestController < ApplicationController
                 if session[:is_admin].eql?("YES") 
                 	# validating if admin
                 else
-                        params[:request]["user_name"]=session[:user_name]
+#                        params[:request]["user_name"]=session[:user_name]
                 end
 
               	@request = Request.new(request_params)

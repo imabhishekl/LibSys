@@ -46,7 +46,7 @@
                     <% if @requests.any?{|request| request.isbn==book.isbn} %>
                     <td> notification requested </td>
                     <%else%>
-                <td><%=link_to 'Request a notification', "/request/new/" + session[:user_name]%> </td>
+   <td><%=link_to 'Request a notification', "/user/request_notif/" + session[:user_name] + "?isbn=" + book.isbn%> </td>
                     <%end%>
                 <%end%>
                </tr>           
