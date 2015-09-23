@@ -1,3 +1,4 @@
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
         <h1>Welcome Admin <%= session[:user_name] %> to search books</h1>
         <%= link_to "Back", "/admin/show/" + session[:user_name] %>
         <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
@@ -14,7 +15,7 @@
         	<%= radio_button_tag(:search_type, %Q(title)) %>
         	<%= label_tag(:admin_check,%Q(TITLE)) %>
         	<%= radio_button_tag(:search_type, %Q(description)) %>
-        	<%= label_tag(:admin_check,%Q(DESCRIPTION)) %>
+        	<%= label_tag(:admin_check,%Q(DESCRIPTION)) %><br/>
         	<%= radio_button_tag(:search_type, %Q(available)) %>
         	<%= label_tag(:admin_check,%Q(AVAILABLE)) %><br/><br/>
     		<%= submit_tag "Search", :name => nil %>
@@ -40,7 +41,7 @@
                 <td> <%= book.description %> </td>
                 <td> <%= book.status %> </td>
                 <% if book.status=='Available' %>
-                <td><%= link_to 'Check out book', :onclick => "ask_user_name(#{book.isbn})"%></td>
+                <td><a href="#" onclick="ask_user_name('<%=session[:user_name]%>','<%= book.isbn%>')">CheckOut</a></td>
             	<%end%>       
             </tr>           
             <%end%>  

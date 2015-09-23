@@ -15,6 +15,15 @@
    <tr>
       <td> <%=link_to 'Search book', "/admin/search/" + session[:user_name] %> </td>
    </tr> 
+   <tr>
+      <td> <%=link_to 'View Checkout Book', "/admin/search/" + session[:user_name] %> </td>
+   </tr> 
+   <tr>
+      <td> <%=link_to 'View Library Patrons', "/admin/search/" + session[:user_name] %> </td>
+   </tr> 
+   <tr>
+      <td> <%=link_to 'Search book', "/admin/search/" + session[:user_name] %> </td>
+   </tr> 
 </table>
 <% if flash[:notice] %>
     <h1><%= flash[:notice]%></h1>

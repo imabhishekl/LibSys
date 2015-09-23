@@ -9,6 +9,10 @@ class AdminController < ApplicationController
 		#valid request from legitemamte user
 	end
 
+  def checked_book_list
+    checkout_list params[:u_name] params[:isbn] session[:is_admin]
+  end
+
 	def validate_admin
     puts "validate_admin"
     puts params[:user_name]
@@ -68,22 +72,22 @@ class AdminController < ApplicationController
   	end
 
   	def checkout
-    	@book=params[:book]
-      	@user=params[:user]
-      	if @user.check_valid
-        	puts "User is valid"
-      	else
-        	flash[:notice] = "User is invalid"
-        	redirect_to @admin
-      	end
-
-      	if @book.update(status:"checkout")
-        	flash[:notice] = "Book Checked out"
-        	redirect_to @admin
-      	else
-        	flash[:notice] = "Failed to checkout book"
-        	redirect_to @admin
-      	end
+    	isbn=params[:isbn]
+      u_name=params[:u_name] 
+      puts "ASLTECH <=>" + params[:u_name]
+      if User.isValid?(u_name)
+        puts "User is valid"
+        if Book.find_by_isbn(isbn).update(status:"checkout")
+          flash[:notice] = "Book Checked out"
+          redirect_to "/admin/show/" + session[:user_name]
+        else
+          flash[:notice] = "Failed to checkout book"
+          redirect_to "/admin/show/" + session[:user_name]
+        end
+      else
+        flash[:notice] = "User is invalid"
+      	redirect_to '/admin/show/' + session[:user_name]
+      end
   	end
 
   
