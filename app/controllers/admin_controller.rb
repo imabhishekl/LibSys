@@ -9,8 +9,9 @@ class AdminController < ApplicationController
 		#valid request from legitemamte user
 	end
 
-  def checked_book_list
-    checkout_list params[:u_name] params[:isbn] session[:is_admin]
+  def checked_out_book_list
+    @book_list=CheckoutDetail.checkout_list params[:u_name],params[:isbn],session[:is_admin]
+    #redirect_to "/admin/checked_out_book_list/" + session[:user_name]
   end
 
 	def validate_admin
@@ -78,6 +79,7 @@ class AdminController < ApplicationController
       if User.isValid?(u_name)
         puts "User is valid"
         if Book.find_by_isbn(isbn).update(status:"checkout")
+          
           flash[:notice] = "Book Checked out"
           redirect_to "/admin/show/" + session[:user_name]
         else
