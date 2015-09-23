@@ -77,11 +77,12 @@ class AdminController < ApplicationController
   	end
 
   	def update_admin
-      puts params[:admin_detail][:name]
-      Admin.update_attributes(:name=>params[:admin_detail][:name])
-
-      flash[:notice] = "Successfully Updated for #{params[:admin_detail][:name]}"
-      redirect_to "/admin/show" + session[:user_name]
+      if Admin.find_by_user_name(session[:user_name]).update(:name=>params[:admin][:name])
+        flash[:notice]= params[:admin][:name] + ' was updated successfully.' 
+      else
+        flash[:notice]= params[:admin][:name] + ' was not updated successfully.'
+      end
+      redirect_to '/admin/show/' + session[:user_name]
   	end
 
   	def create
