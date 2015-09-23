@@ -26,10 +26,12 @@
                			onclick="warning_prompt_book_delete('<%= session[:user_name]%>','<%= p.isbn %>')">
                			Delete
                		</a>
-               		<%end%>
+               		<% else %>
+                    Delete
+                    <%end%>
             </td>     
             <td> <%= link_to "View Who Checkout " ,"/admin/checked_out_book_list/" + 
-            session[:user_name] + "?u_name=" + p.isbn%> </td>
+            session[:user_name] + "?isbn=" + p.isbn unless p.status == "Available"%> </td>
         </tr>           
         <%end%>  
 		<% else %>

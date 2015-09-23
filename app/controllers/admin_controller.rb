@@ -10,9 +10,9 @@ class AdminController < ApplicationController
 	end
 
   def edit_view
-    @admin_detail= Admin.find_by_user_name(session[:user_name])
-    if @admin_detail
-      @admin_detail
+    @admin= Admin.find_by_user_name(session[:user_name])
+    if @admin
+      @admin
     else
       flash[:notice] = "Sorry some issue in fetching details"
       redirect_to "/admin/show/" + session[:user_name]
@@ -48,6 +48,9 @@ class AdminController < ApplicationController
   end
 
   def checked_out_book_list
+    puts "CHECKOUT"
+    puts params[:u_name]
+    puts params[:isbn]
     @book_list=CheckoutDetail.checkout_list params[:u_name],params[:isbn],session[:is_admin],params[:current]
     #redirect_to "/admin/checked_out_book_list/" + session[:user_name]
   end
@@ -77,6 +80,7 @@ class AdminController < ApplicationController
   	end
 
   	def update_admin
+      params[:user][]
       if Admin.find_by_user_name(session[:user_name]).update(:name=>params[:admin][:name])
         flash[:notice]= params[:admin][:name] + ' was updated successfully.' 
       else
@@ -122,7 +126,7 @@ class AdminController < ApplicationController
       if User.isValid?(u_name)
         puts "User is valid"
         if Book.find_by_isbn(isbn).update(status:"checkout")
-          CheckoutDetail.insert_in_chkout_dtls isbn,u_name
+          CheckoutDetail.insert_in_chkout_dtls u_name,isbn
           flash[:notice] = "Book Checked out"
           redirect_to "/admin/show/" + session[:user_name]
         else
