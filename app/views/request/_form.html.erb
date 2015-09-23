@@ -1,14 +1,15 @@
 <%= form_for(@request,url: "/request/create/" + session[:user_name]) do |f| %>
-  <div class="field">
+<!--   <div class="field">
     <%= f.label :isbn %><br>
     <%= f.text_field :isbn %>
    </div>
-<% if session[:is_admin].eql?(YES) %>
+<% if session[:is_admin].eql?("YES") %>
   <div class="field">
     <%= f.label :user_name %><br>
     <%= f.text_field :user_name %>
   </div>
 <%end%>
+-->
   <div class="actions">
   <input type="hidden" name="user_name" value=<%= session[:user_name]%>>
     <%= f.submit %>

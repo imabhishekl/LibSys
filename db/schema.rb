@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 20150923221809) do
   end
 
   create_table "requests", id: false, force: :cascade do |t|
-    t.string "isbn",        limit: 13, null: false
-    t.string "user_name",   limit: 25, null: false
-    t.string "request_ind", limit: 1,  null: false
+    t.string "isbn",        limit: 13,               null: false
+    t.string "user_name",   limit: 25,               null: false
+    t.string "request_ind", limit: 1,  default: "Y", null: false
   end
 
   create_table "users", primary_key: "user_name", force: :cascade do |t|

@@ -3,10 +3,14 @@
         <br\>       
 <table border = 1>
    <tr>
+    <td> <%=link_to 'Edit profile',"/user/edit/"+ session[:user_name]%> </td>
+   </tr>
    <tr>
   <td> <%=link_to 'Search book', "/user/search/" + session[:user_name] %> </td>
-  <td> <%=link_to 'View your book requests', "/book/new/" + session[:user_name]%> </td>
    </tr> 
+   <tr>
+   <td> <%=link_to 'View your checkout-history', "/user/checkout_history/" + session[:user_name]%> </td>
+   </tr>
 </table>
 <% if flash[:notice] %>
     <h1><%= flash[:notice]%></h1>

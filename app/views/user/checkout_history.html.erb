@@ -1,0 +1,24 @@
+<%= link_to "Back", "/user/show/" + session[:user_name] %>
+            <p> Your Checkout History </p>
+            <table border="1">
+            <tr>    
+                <td> ISBN </td>
+                <td> CHECKOUT_DATE </td>
+                <td> RETURN BY DATE </td> 
+                <td> ACTUAL RETURN DATE </td>
+                <td> STATUS </td>    
+                <td> ACTIVITY </td> 
+            </tr>           
+            <%@history.each do |h|%>
+
+ 	     <tr>            
+                <td> <%= h.isbn %> </td>
+                <td> <%= h.checkout_date %> </td>
+                <td> <%= h.return_date %> </td>
+                <td> <%= h.actual_return_date %> </td>
+                <td> <%= h.checkout_status %> </td>
+                <% if h.checkout_status=='CheckedOut' %>
+             <td><%= link_to 'Return book', "/user/return_book/" + session[:user_name] + "?isbn=" + h.isbn %></td>
+                <%end%>
+             </tr>           
+            <%end%>  
