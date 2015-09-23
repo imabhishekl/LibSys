@@ -18,4 +18,8 @@ class CheckoutDetail < ActiveRecord::Base
 			CheckoutDetail.all
 		end
 	end
+
+	def self.insert_in_chkout_dtls u_name,isbn
+		CheckoutDetail.create(isbn: isbn,user_name: u_name,checkout_status: CheckedOut)
+	end
 end

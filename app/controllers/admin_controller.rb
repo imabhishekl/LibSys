@@ -80,7 +80,7 @@ class AdminController < ApplicationController
       if User.isValid?(u_name)
         puts "User is valid"
         if Book.find_by_isbn(isbn).update(status:"checkout")
-          
+          CheckoutDetail.insert_in_chkout_dtls isbn,u_name
           flash[:notice] = "Book Checked out"
           redirect_to "/admin/show/" + session[:user_name]
         else

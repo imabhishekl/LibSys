@@ -1,1 +1,27 @@
-<h1><%= @book_list.size %></h1>
+<%= link_to "Back", "/admin/show/" + session[:user_name] %>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+<br/><br/> 
+<% if @book_list.present? %>
+	<h1>Checked Out List</h1>
+    <table border="1">
+        <tr>    
+            <td> ISBN </td>
+            <td> USERNAME </td>
+            <td> CHECKED OUT DATE </td>
+            <td> RETURN DATE </td>
+            <td> ACTUAL DATE </td>    
+            <td> STATUS </td> 
+        </tr>           
+        <%@book_list.each do |bkl|%>
+ 	    <tr>            
+        	<td> <%= bkl.isbn %> </td>
+            <td> <%= bkl.user_name %> </td>
+            <td> <%= bkl.checkout_date %> </td>
+            <td> <%= bkl.return_date %> </td>
+            <td> <%= bkl.actual_return_date %> </td>
+            <td> <%= bkl.checkout_status %></a></td>     
+        </tr>           
+        <%end%>  
+		<% else %>
+  			<p>No book checked out.</p>
+		<% end %>
