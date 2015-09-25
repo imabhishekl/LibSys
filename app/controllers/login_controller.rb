@@ -4,6 +4,7 @@ class LoginController < ApplicationController
 	end
 
 	def login_auth
+                puts "User-name at login_auth is " + params[:user_name]
 		if params[:type].eql?(ADMIN)
 			puts "Authencating admin"
 			@authorized_user = Admin.authenticate(params[:user_name],params[:password])

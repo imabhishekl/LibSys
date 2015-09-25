@@ -4,7 +4,7 @@
 
         <%= form_for(@user,url: {action: "create",:user_name => session[:user_name]}) do |f| %>
        <div class="field">
-	    <%= f.label :user_name %><br>
+	    <%= f.label :email %><br>
 	    <%= f.text_field :user_name %>
        </div>
        <div class="field">
@@ -14,10 +14,6 @@
        <div class="field">
 	    <%= f.label :password %><br>
 	    <%= f.password_field :password %>
-       </div>
-       <div class="field">
-	    <%= f.label :email_id %><br>
-            <%= f.text_field :email_id %>
        </div>
        <div class="actions">
     <%= f.submit %>

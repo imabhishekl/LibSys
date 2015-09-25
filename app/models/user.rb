@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 	self.primary_key="user_name"
 
 	def self.authenticate(login_user_name,login_password)
+          if login_user_name !~ /^.+@.+\..+$/i 
+              return false
+          end
        user = User.find_by_user_name(login_user_name)
 
        if user && user.match_password(login_password,user.password)

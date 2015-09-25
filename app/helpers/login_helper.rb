@@ -16,6 +16,8 @@ module LoginHelper
 	end
 
 	def is_valid_user_request user_name
+                puts "User-name is " +  user_name
+                puts "In session " + session[:user_name]
 		if session[:user_name] && session[:user_name].eql?(user_name)
 			return true
 		else

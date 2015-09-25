@@ -56,6 +56,7 @@ class AdminController < ApplicationController
     puts "validate_admin"
     puts params[:user_name]
     puts session[:is_admin]
+
 		if is_valid_user_request(params[:user_name]) && session[:is_admin].eql?(YES)
 			#valid request from legitemamte user
 		else

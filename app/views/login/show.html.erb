@@ -3,7 +3,7 @@
         <%= link_to "Home Page", controller: "home_page", action: "index" %>
         <br/>
         <%= form_tag(:controller => 'login',:action => 'login_auth') do %>
-        <%= label_tag(:user_name,%Q(USER NAME)) %>
+        <%= label_tag(:user_name,%Q(EMAIL-ID)) %>
         <%= text_field_tag(:user_name) %><br/> <br/>
         <%= label_tag(:password,%Q(PASSWORD)) %>
         <%= password_field_tag(%Q(password)) %><br/><br/>

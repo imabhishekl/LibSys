@@ -4,6 +4,11 @@ class SignupController < ApplicationController
 	end	
      
         def create
+           if params[:user]["user_name"] !~ /^.+@.+\..+$/i 
+              flash[:notice]="Invalid Username. Please check and try again"
+              redirect_to ("/signup/show")
+           end   
+
            params[:user]["password"]=Base64.encode64(params[:user]["password"])
            @user = User.new(user_params)
 
@@ -24,7 +29,7 @@ class SignupController < ApplicationController
    
     private
     def user_params
-       params.require(:user).permit(:user_name,:name,:password,:email_id)
+       params.require(:user).permit(:user_name,:name,:password)
     end
 
 end
