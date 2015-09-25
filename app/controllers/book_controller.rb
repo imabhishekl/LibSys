@@ -12,6 +12,8 @@ class BookController < ApplicationController
   	end
 
   	def edit
+         puts "isbn is: " + params[:isbn]
+         @book=Book.find_by_isbn(params[:isbn])
   	end
 
     def validate_admin
@@ -57,10 +59,11 @@ class BookController < ApplicationController
   	end
 
   	def update
+        set_book
     	if @book.update(book_params)
-        	redirect_to @book, notice: 'Book was successfully updated.'
+        	redirect_to "/admin/show/" + session[:user_name], notice: 'Book was successfully updated.'
       	else
-        	render action: 'edit' 
+        	redirect_to "/admin/search/" + session[:user_name], notice: 'Failed to checkout book.' 
       	end
     end
 
@@ -79,7 +82,7 @@ class BookController < ApplicationController
   	private
     	# Use callbacks to share common setup or constraints between actions.
     	def set_book
-      		@book=Book.where(isbn: param[:isbn]).first
+      		@book=Book.where(isbn: params[:isbn]).first
     	end
 
     	# Never trust parameters from the scary internet, only allow the white list through.

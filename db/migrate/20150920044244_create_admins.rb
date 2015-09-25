@@ -4,7 +4,6 @@ class CreateAdmins < ActiveRecord::Migration
       t.string :user_name,:limit => 25, :null => false
       t.string :name, :limit => 25, :null => false
       t.string :password, :limit => 50, :null => false
-      t.string :email, :limit => 25, :null => false 
       t.string :primary_ind,:limit => 1, :null => false
     end
       execute <<-SQL

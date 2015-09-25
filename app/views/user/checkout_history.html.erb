@@ -1,13 +1,19 @@
 <%= link_to "Back", "/user/show/" + session[:user_name] %>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+
             <p> Your Checkout History </p>
             <table border="1">
             <tr>    
-                <td> ISBN </td>
-                <td> CHECKOUT_DATE </td>
-                <td> RETURN BY DATE </td> 
-                <td> ACTUAL RETURN DATE </td>
-                <td> STATUS </td>    
-                <td> ACTIVITY </td> 
+                <% if @history.count==0 %>
+                  <p> No books checked out </p>
+                <% else %>
+                  <td> ISBN </td>
+                  <td> CHECKOUT_DATE </td>
+                  <td> RETURN BY DATE </td> 
+                  <td> ACTUAL RETURN DATE </td>
+                  <td> STATUS </td>    
+                  <td> ACTIVITY </td> 
+                <%end%>
             </tr>           
             <%@history.each do |h|%>
 

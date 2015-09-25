@@ -123,6 +123,6 @@ if checkout_detail.update(checkout_status:'Returned',actual_return_date: Date.to
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-       params.require(:user).permit(:user_name,:name,:password,:email_id,:status)
+       params.require(:user).permit(:user_name,:name,:password,:status)
     end
 end

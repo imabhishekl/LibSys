@@ -11,10 +11,6 @@
     <%= f.label :password %><br>
     <%= f.password_field :password %>
   </div>
-  <div class="field">
-    <%= f.label :email_id %><br>
-    <%= f.text_field :email_id %>
-  </div>
   <div class="actions">
   <input type="hidden" name="user_name" value=<%= session[:user_name]%>>
     <%= f.submit %>

@@ -1,2 +1,6 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<p id="notice"><%= notice %></p>
+<h1>Edit book details</h1>
+<%= link_to "Back", "/admin/search/" + session[:user_name] %>
+<font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
+
+<%= render 'book' %>

@@ -1,7 +1,7 @@
 class Admin < ActiveRecord::Base
 	self.primary_key="user_name"
 
-	def self.authenticate(login_user_name,login_password)
+       def self.authenticate(login_user_name,login_password)
        admin = Admin.find_by_user_name(login_user_name)
        puts admin 
 

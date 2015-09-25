@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <%= f.text_field :status,:disabled=>true %>
   </div>
   <div class="actions">
   <input type="hidden" name="user_name" value=<%= session[:user_name]%>>
