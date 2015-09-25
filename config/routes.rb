@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home_page#index'
 
-  get    ':controller(/:action(/:user_name))'
+  get    ':controller(/:action(/:user_name))', :constraints => { :user_name => /[^\/]+/ }
   post   ':controller(/:action(/:user_name))'
   patch  '/admin/update_admin/:user_name' => 'admin#update_admin'
   delete 'logout' =>  'login#logout'
