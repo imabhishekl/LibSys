@@ -87,14 +87,30 @@ class UserController < ApplicationController
         def checkout_history
                 @history=CheckoutDetail.checkout_list session[:user_name],nil, session[:user_name],nil
         end 
-  
+      def handle_notification isbn
+        @notifier_list = Request.get_notifier_list isbn
+
+        if @notifier_list.present?  
+          @notifier_list.each do |list|
+            puts list.user_name
+          end
+          #NotificationMail.send_notification notifier_list.user_name
+        else
+          #no one requested for book
+          return
+        end
+        Request.update_close_notification isbn
+      end
+
+
         def return_book
 checkout_detail=CheckoutDetail.where(isbn:params[:isbn], user_name:params[:user_name], checkout_status: 'CheckedOut' ).first
 book=Book.find_by_isbn(params[:isbn])
 
 if checkout_detail.update(checkout_status:'Returned',actual_return_date: Date.today) && book.update(status:'Available')
-                        puts 'GLEN in if : return_book' 
                         flash[:notice] = "Returned book successfully"
+                        #since the book is returned we need to check for notification
+                        handle_notification params[:isbn]
                         redirect_to "/user/show/" + session[:user_name]
                         return
              else

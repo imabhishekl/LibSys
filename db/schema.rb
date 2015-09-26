@@ -14,18 +14,22 @@
 ActiveRecord::Schema.define(version: 20150923221809) do
 
   create_table "admins", primary_key: "user_name", force: :cascade do |t|
-    t.string "name",        limit: 25, null: false
-    t.string "password",    limit: 50, null: false
-    t.string "email",       limit: 25, null: false
-    t.string "primary_ind", limit: 1,  null: false
+    t.string   "name",        limit: 25, null: false
+    t.string   "password",    limit: 50, null: false
+    t.string   "email",       limit: 25, null: false
+    t.string   "primary_ind", limit: 1,  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "book_requests", force: :cascade do |t|
-    t.string "isbn",        limit: 13, null: false
-    t.string "title",       limit: 50, null: false
-    t.string "author",      limit: 25, null: false
-    t.string "description", limit: 50, null: false
-    t.string "status",      limit: 12, null: false
+    t.string   "isbn",        limit: 13, null: false
+    t.string   "title",       limit: 50, null: false
+    t.string   "author",      limit: 25, null: false
+    t.string   "description", limit: 50, null: false
+    t.string   "status",      limit: 12, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "books", primary_key: "isbn", force: :cascade do |t|
@@ -49,9 +53,11 @@ ActiveRecord::Schema.define(version: 20150923221809) do
   end
 
   create_table "requests", id: false, force: :cascade do |t|
-    t.string "isbn",        limit: 13,               null: false
-    t.string "user_name",   limit: 25,               null: false
-    t.string "request_ind", limit: 1,  default: "Y", null: false
+    t.string   "isbn",        limit: 13,               null: false
+    t.string   "user_name",   limit: 25,               null: false
+    t.string   "request_ind", limit: 1,  default: "Y", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "users", primary_key: "user_name", force: :cascade do |t|

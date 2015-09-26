@@ -80,7 +80,6 @@ class AdminController < ApplicationController
   	end
 
   	def update_admin
-      params[:user][]
       if Admin.find_by_user_name(session[:user_name]).update(:name=>params[:admin][:name])
         flash[:notice]= params[:admin][:name] + ' was updated successfully.' 
       else
