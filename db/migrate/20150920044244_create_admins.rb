@@ -14,11 +14,6 @@ class CreateAdmins < ActiveRecord::Migration
   end
 
   def down
-    execute <<-SQL
-      ALTER TABLE admins
-        DROP PRIMARY KEY; 
-    SQL
-
     drop_table :admins
   end
 end
