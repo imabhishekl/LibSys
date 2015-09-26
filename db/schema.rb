@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20150923221809) do
   create_table "admins", primary_key: "user_name", force: :cascade do |t|
     t.string   "name",        limit: 25, null: false
     t.string   "password",    limit: 50, null: false
-    t.string   "email",       limit: 25, null: false
     t.string   "primary_ind", limit: 1,  null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(version: 20150923221809) do
   create_table "users", primary_key: "user_name", force: :cascade do |t|
     t.string   "name",       limit: 25,                    null: false
     t.string   "password",   limit: 50,                    null: false
-    t.string   "email_id",   limit: 25,                    null: false
     t.string   "status",     limit: 10, default: "Active", null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
