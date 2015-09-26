@@ -1,7 +1,7 @@
 <%= link_to "Back", "/admin/show/" + session[:user_name] %>
 <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
 <br/><br/>
-<%= form_for(@admin_detail,url: {action: "update_admin",:user_name => session[:user_name]}) do |f| %>
+<%= form_for(@admin,url: {action: "update_admin",:user_name => session[:user_name]}) do |f| %>
   <table>
   	<tr>
     	<td><%= f.label :email %></td>
@@ -11,8 +11,11 @@
     	<td><%= f.label :name %></td>
     	<td><%= f.text_field :name %></td>
   	</tr>
+    <tr>
+      <td><%= f.label :password %></td>
+      <td><%= f.password_field :password %></td>
+    </tr>
   	<tr>
     	<td colspan="2"> <%= f.submit %></td>
     </tr>
-    <%= hidden_field_tag 'admin_detail', @admin_detail %>
 <% end %>

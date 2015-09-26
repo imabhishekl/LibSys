@@ -6,6 +6,7 @@ class CreateBookRequests < ActiveRecord::Migration
       t.string :author, :limit => 25, :null => false
       t.string :description, :limit => 50, :null => false
       t.string :status, :limit => 12, :null => false
+      t.timestamps null: false
     end
   end
 

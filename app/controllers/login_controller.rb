@@ -1,5 +1,6 @@
 class LoginController < ApplicationController
 	def show
+		#NotificationMail.send_notification ('aslingw@ncsu.edu')
 		#login form
 	end
 

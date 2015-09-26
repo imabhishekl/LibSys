@@ -23,7 +23,8 @@
                		</a>
                		<%end%>
             </td>     
-            <td> <%= link_to "View Checkout List" ,"/admin/checked_out_book_list/" + session[:user_name] + "?u_name=" + p.user_name%> </td>
+            <td> <%= link_to "View Checkout List" ,"/admin/checked_out_book_list/" + 
+            session[:user_name] + "?u_name=" + p.user_name%> </td>
         </tr>           
         <%end%>  
 		<% else %>

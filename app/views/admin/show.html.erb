@@ -1,8 +1,8 @@
-<p> Welcome Admin <%= session[:user_name] %>,please choose an option </p>
+<h3> Welcome Admin <em><%= session[:user_name] %></em>,please choose an option </h3>
         <br\>   
         <font color="blue"><%= link_to 'Edit Profile', '/admin/edit_view/' + session[:user_name] %></font>
         <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>   
-        <br\><br\> 
+        <br/><br/> 
 <table border = 1>
    <tr>
       <td> <%=link_to 'Create a book entry', "/book/new/" + session[:user_name]%> </td>

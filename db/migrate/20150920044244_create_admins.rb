@@ -5,6 +5,7 @@ class CreateAdmins < ActiveRecord::Migration
       t.string :name, :limit => 25, :null => false
       t.string :password, :limit => 50, :null => false
       t.string :primary_ind,:limit => 1, :null => false
+      t.timestamps null: false
     end
       execute <<-SQL
         ALTER TABLE admins
