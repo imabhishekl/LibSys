@@ -11,6 +11,9 @@
    <tr>
    <td> <%=link_to 'View your checkout-history', "/user/checkout_history/" + session[:user_name]%> </td>
    </tr>
+   <tr>
+   <td> <%=link_to 'Request a new book', "/book_request/new/" + session[:user_name]%> </td>
+   </tr>
 </table>
 <% if flash[:notice] %>
     <h1><%= flash[:notice]%></h1>

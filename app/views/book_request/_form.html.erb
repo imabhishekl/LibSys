@@ -1,0 +1,22 @@
+<%= form_for(@book_request,url: "/book_request/create/" + session[:user_name]) do |f| %>
+  <div class="field">
+    <%= f.label :isbn %><br>
+    <%= f.text_field :isbn %>
+   </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :authors %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+  <input type="hidden" name="user_name" value=<%= session[:user_name]%>>
+    <%= f.submit %>
+  </div>
+<% end %>
