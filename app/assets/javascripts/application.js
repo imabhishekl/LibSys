@@ -19,7 +19,8 @@ function ask_user_name(admin_user_name,isbn)
 	var u_name = prompt("Please enter the user_name for which checkout is requested")
 	if (u_name != null)
 	{
-		window.location= "librarysys.herokuapp.com" + "/admin/checkout/" + admin_user_name + 
+		var re = new RegExp(/^.*\//);
+		window.location= re.exec(window.location.href) + "/admin/checkout/" + admin_user_name + 
 						"?u_name=" + u_name + "&isbn=" + isbn;
 	}
 }

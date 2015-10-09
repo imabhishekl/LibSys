@@ -7,6 +7,33 @@ class BookController < ApplicationController
   	def show
   	end
 
+    def request_list
+      @req_book = BookRequest.where(:status=>"Requested")
+    end
+
+    def hndl_bk_req
+      type = params[:type]
+      isbn = params[:isbn]
+      puts isbn
+      handle_book_request type,isbn
+      redirect_to ("/admin/show/" + session[:user_name])
+    end
+
+    def handle_book_request type,isbn
+      if type == "A"
+        puts "Accept"
+        @br = BookRequest.find_by_isbn(isbn)
+        Book.create(:isbn=>@br.isbn,:title=>@br.title,:authors=>@br.author,:description=>@br.description)
+        puts @br.present?
+        @br.update_attributes(:status=>"HandledA")
+
+      elsif type == "R"
+        puts "Reject"
+        BookRequest.update(status:"HandledR")
+      end        
+      puts "return"
+    end
+
   	def new
    		@book = Book.new
   	end
