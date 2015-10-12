@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 20150923221809) do
   end
 
   create_table "book_requests", force: :cascade do |t|
-    t.string   "isbn",        limit: 13, null: false
-    t.string   "title",       limit: 50, null: false
-    t.string   "author",      limit: 25, null: false
-    t.string   "description", limit: 50, null: false
-    t.string   "status",      limit: 12, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "isbn",        limit: 13,                       null: false
+    t.string   "title",       limit: 50,                       null: false
+    t.string   "author",      limit: 25,                       null: false
+    t.string   "description", limit: 50,                       null: false
+    t.string   "status",      limit: 12, default: "Requested", null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "books", primary_key: "isbn", force: :cascade do |t|
