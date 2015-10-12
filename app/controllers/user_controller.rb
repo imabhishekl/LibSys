@@ -92,8 +92,10 @@ class UserController < ApplicationController
         end
 
         def checkout_history
+                isbn=params[:isbn]
                 @history=CheckoutDetail.checkout_list session[:user_name],nil, session[:user_name],nil
         end 
+
       def handle_notification isbn
         @notifier_list = Request.get_notifier_list isbn
 
@@ -102,14 +104,13 @@ class UserController < ApplicationController
             book_det = Book.find(list.isbn)
             subject = "Requested Book Available"
             UserNotifier.send_signup_email(list.user_name,subject,book_det.title).deliver
+            req=Request.where(isbn:list.isbn).update_all(request_ind: "N")
           end
-          #NotificationMail.send_notification notifier_list.user_name
+           
         else
           #no one requested for book
           return
         end
-        req=Request.find_by_isbn(isbn)
-        req.update_column(:request_ind,'N')
       end
 
 
