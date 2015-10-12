@@ -24,24 +24,16 @@ config.action_mailer.raise_delivery_errors = true
 
 # set delivery method to :smtp, :sendmail or :test
 config.action_mailer.delivery_method = :smtp
+#config.action_mailer.default_url_options = { :host => 'localhost:3000',protocol: 'http' }
+#config.action_mailer.perform_deliveries = true
+#config.action_mailer.default_options = {from: 'libsys@rails@gmail.com'}
+#config.action_mailer.delivery_method = :sendmail
+#config.action_mailer.raise_delivery_errors = true
+#config.action_mailer.default :charset => "utf-8"
 
 # these options are only needed if you choose smtp delivery
-config.action_mailer.smtp_settings = {
-  :address        => 'smtp.example.com',
-  :port           => 25,
-  :domain         => 'www.gmail.com',
-  :authentication => :login,
-  :user_name      => 'libsys.rails',
-  :password       => 'libsys@rail'
-}
+# Uncomment following to use SMTP settings for gmail 
 
-# ActionMailer Config
-config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-config.action_mailer.delivery_method = :smtp
-# change to true to allow email to be sent during development
-config.action_mailer.perform_deliveries = false
-config.action_mailer.raise_delivery_errors = true
-config.action_mailer.default :charset => "utf-8"
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 

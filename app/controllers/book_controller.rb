@@ -22,14 +22,15 @@ class BookController < ApplicationController
     def handle_book_request type,isbn
       if type == "A"
         puts "Accept"
-        @br = BookRequest.find_by_isbn(isbn)
-        Book.create(:isbn=>@br.isbn,:title=>@br.title,:authors=>@br.author,:description=>@br.description)
-        puts @br.present?
-        @br.update_attributes(:status=>"HandledA")
+        br = BookRequest.find_by_isbn(isbn)
+        Book.create(:isbn=>br.isbn,:title=>br.title,:authors=>br.author,:description=>br.description)
+        puts br.status
+        BookRequest.find_by_isbn(isbn).update(:status=>"Accept")
+        #Admin.find_by_user_name("boss@admin.com").update(:name=>"aaaa")
 
       elsif type == "R"
         puts "Reject"
-        BookRequest.update(status:"HandledR")
+        BookRequest.find_by_isbn(isbn).update(:status=>"Reject")
       end        
       puts "return"
     end

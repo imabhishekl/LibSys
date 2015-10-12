@@ -8,6 +8,7 @@ class CreateBookRequests < ActiveRecord::Migration
       t.string :status, :limit => 12, :null => false, :default => "Requested"
       t.timestamps null: false
     end
+    
   end
 
   def down

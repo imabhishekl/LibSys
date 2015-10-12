@@ -92,14 +92,17 @@ class UserController < ApplicationController
 
         if @notifier_list.present?  
           @notifier_list.each do |list|
-            puts list.user_name
+            book_det = Book.find(list.isbn)
+            subject = "Requested Book Available"
+            UserNotifier.send_signup_email(list.user_name,subject,book_det.title).deliver
           end
           #NotificationMail.send_notification notifier_list.user_name
         else
           #no one requested for book
           return
         end
-        Request.update_close_notification isbn
+        req=Request.find_by_isbn(isbn)
+        req.update_column(:request_ind,'N')
       end
 
 

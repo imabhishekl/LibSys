@@ -20,7 +20,7 @@ function ask_user_name(admin_user_name,isbn)
 	if (u_name != null)
 	{
 		var re = new RegExp(/^.*\//);
-		window.location= re.exec(window.location.href) + "/admin/checkout/" + admin_user_name + 
+		window.location= "librarysys.herokuapp.com" + "/admin/checkout/" + admin_user_name + 
 						"?u_name=" + u_name + "&isbn=" + isbn;
 	}
 }

@@ -4,6 +4,6 @@ class Request < ActiveRecord::Base
 	end
 
 	def self.update_close_notification isbn
-		where(:isbn=>isbn).update(:request_ind=>"N")
+		find_by_isbn(isbn).update(:request_ind=>"N")
 	end
 end
