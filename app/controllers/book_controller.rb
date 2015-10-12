@@ -25,12 +25,11 @@ class BookController < ApplicationController
         br = BookRequest.find_by_isbn(isbn)
         Book.create(:isbn=>br.isbn,:title=>br.title,:authors=>br.author,:description=>br.description)
         puts br.status
-        BookRequest.find_by_isbn(isbn).update(:status=>"Accept")
-        #Admin.find_by_user_name("boss@admin.com").update(:name=>"aaaa")
+        BookRequest.where(isbn:isbn).update_all(:status=>"Accept")
 
       elsif type == "R"
         puts "Reject"
-        BookRequest.find_by_isbn(isbn).update(:status=>"Reject")
+        BookRequest.where(isbn:isbn).update_all(:status=>"Reject")
       end        
       puts "return"
     end
