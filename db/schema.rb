@@ -21,18 +21,19 @@ ActiveRecord::Schema.define(version: 20151012023100) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "book_requests", primary_key: "isbn", force: :cascade do |t|
-    t.string   "title",       limit: 50,                       null: false
-    t.string   "author",      limit: 25,                       null: false
-    t.string   "description", limit: 50,                       null: false
-    t.string   "status",      limit: 12, default: "Requested", null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+  create_table "book_requests", id: false, force: :cascade do |t|
+    .string   "isbn",        limit: 13,                       null: false
+    .string   "title",       limit: 50,                       null: false
+    .string   "author",      limit: 25,                       null: false
+    .string   "description", limit: 50,                       null: false
+    .string   "status",      limit: 12, default: "Requested", null: false
+    .datetime "created_at",                                   null: false
+    .datetime "updated_at",                                   null: false
   end
 
   create_table "books", primary_key: "isbn", force: :cascade do |t|
-    t.string   "title",       limit: 50,                       null: false
-    t.string   "authors",     limit: 25,                       null: false
+    .string   "title",       limit: 50,                       null: false
+    .string   "authors",     limit: 25,                       null: false
     t.string   "description", limit: 50,                       null: false
     t.string   "status",      limit: 12, default: "Available", null: false
     t.datetime "created_at",                                   null: false
