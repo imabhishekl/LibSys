@@ -50,12 +50,19 @@ class UserController < ApplicationController
 
   	def update
                 set_user
+
+                if params[:user]["password"].empty?
+                    flash[:notice] = "Password cannot be empty"
+                    render action: 'edit'
+                else 
+
                 params[:user]["password"]= Base64.encode64(params[:user]["password"])   
       		if @user.update(user_params)
    		redirect_to "/user/show/" + session[:user_name], notice: 'User was successfully updated.' 
       		else
         		render action: 'edit'
       		end
+                end
   	end
 
 	def show 
