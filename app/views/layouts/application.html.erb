@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LibSys</title>
-  <%= favicon_link_tag 'library.ico' %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>Libsys</title>
+  <%= stylesheet_link_tag 'application', media: 'all',
+                          'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<body>
+<div id="wrapper"><!-- #wrapper -->
+
+<footer>
+<div id="footer-area">
+
+<%=link_to "About", "/about" %>
+<%=link_to "Contact us", "/contact" %>
+
+</div>
+
+</footer>
+
+  <nav><!-- top nav -->
+    <div class="menu">
+      <ul>
+      </ul>
+    </div>
+  </nav><!-- end of top nav -->
+
+  <header><!-- header -->
+
+  <div id="container">
+
+<div class="leftimage"><img src="http://www.ssdesign.com/librarypr/download/odds_and_ends/reader200.gif" height="100" width="100"></div>
+<div class="righttext">Library Management System </div> 
+
+  </div>
+
+  </header><!-- end of header -->
+
+  <section id="main"><!-- #main content and sidebar area -->
+    <section id="content"><!-- #content -->
+
+
 <%= yield %>
 
+</div>
 </body>
 </html>

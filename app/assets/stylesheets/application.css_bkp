@@ -62,7 +62,7 @@ header {
     width: 1240px;
     height:100px;
     margin: 0 auto;
-    background: #560030 ;
+    background: #055600 ;
 }
 
 #h2 {text-align: center;margin-left: 30px}
@@ -284,25 +284,4 @@ left: 30%;
 display: inline;
 }
 
-#container2 {
-overflow:hidden;
-position:relative;
-margin-left:auto;
-margin-right:auto;
-}
-.lefttext {
-display: inline-block;
-color: black;
-position:absolute;
-font-size: 1.5em;
-top: 50%;
-left: 30%;
-}
-.righttext {
-color: black;
-position:absolute;
-font-size: 1.5em;
-top: 50%;
-left: 30%;
-display: inline;
-} 
+ 
