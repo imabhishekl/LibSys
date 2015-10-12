@@ -6,6 +6,7 @@ class AdminController < ApplicationController
   	end
 
 	def show
+    NotificationMail.registration_confirmation()
 		#valid request from legitemamte user
 	end
 

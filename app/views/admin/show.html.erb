@@ -31,6 +31,9 @@
    <tr>
       <td> <%=link_to 'Search book', "/admin/search/" + session[:user_name] %> </td>
    </tr> 
+   <tr>
+      <td> <%=link_to 'View Requested Book', "/book/request_list/" + session[:user_name] %> </td>
+   </tr> 
 </table>
 <% if flash[:notice] %>
     <h1><%= flash[:notice]%></h1>
