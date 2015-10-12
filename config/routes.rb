@@ -7,6 +7,9 @@ Rails.application.routes.draw do
  delete 'logout' =>  'login#logout'
  get    'edit_view' => 'admin#edit_view/:user_name', :constraints => { :user_name => /[^\/]+/ }
  get    'search' =>   'admin#search/:user_name', :constraints => { :user_name => /[^\/]+/ }
+get 'about' => 'home_page#about'
+get 'contact' => 'home_page#contact'
+
  
  resources :admin
  resources :book
