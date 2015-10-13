@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
  get    ':controller(/:action(/:user_name))', :constraints => { :user_name => /[^\/]+/ }
  post   ':controller(/:action(/:user_name))', :constraints => { :user_name => /[^\/]+/ }
+ patch   ':controller(/:action(/:user_name))', :constraints => { :user_name => /[^\/]+/ }
  patch  '/admin/update_admin/:user_name' => 'admin#update_admin',:constraints => { :user_name => /[^\/]+/ }
  delete 'logout' =>  'login#logout'
  get    'edit_view' => 'admin#edit_view/:user_name', :constraints => { :user_name => /[^\/]+/ }
@@ -16,6 +17,7 @@ get 'contact' => 'home_page#contact'
  resources :user
  resources :checkout_detail
  resources :request
+ resources :book_request
  # You can have the root of your site routed with "root"
  # root 'welcome#index'
 
