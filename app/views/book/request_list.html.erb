@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <%= link_to "Back", "/admin/show/" + session[:user_name] %>
 <font color="blue"><%= link_to "Logout", logout_path,method: "delete" %></font>
 <br/><br/> 
@@ -20,6 +21,7 @@
             <td> <%= p.description %></td>
             <td> <%= link_to 'Accept', '/book/hndl_bk_req/' + session[:user_name] + '?type=A&isbn=' + p.isbn%> </td>
             <td> <%= link_to 'Reject', '/book/hndl_bk_req/' + session[:user_name] + '?type=R&isbn=' + p.isbn%> </td>
+            <td> <%= link_to 'edit', '/book_request/edit/' + session[:user_name] + '?type=R&isbn=' + p.isbn %> </td>
         </tr>           
         <%end%>  
     <% else %>
