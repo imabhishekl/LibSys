@@ -18,7 +18,8 @@ Both admins and patrons can use ISBN, title, author or related descriptions to s
 Super admin can add admins and edit their profiles. 
 ##**View all patrons**
 Admins can view the profiles of all patrons, such as email, name, status (active or inactive). Admins can also view the checkout history of patrons or delete their account. 
-
+##**Extra Credits **
+Extra credit feature of both mail sending and book suggestion is implemented
 
 
 
